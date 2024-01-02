@@ -26,17 +26,17 @@ def some_callback_1(context, timer):
     context['count'] += 1
     print('callback: ' + timer._name + ", count: " + str(context['count']))
 
+###########################################################################
 
 timer1 = Timer_Task(interval=1, timer_name="Timer_1", context={'count': 0}, callback=some_callback_1)
 
-##########################
 if __name__ == '__main__':
     
     loop = asyncio.get_event_loop()
+    timer1._task = loop.create_task(timer1.start())
 
     try:
         print('>>>')
-        timer1._task = loop.create_task(timer1.start())
         loop.run_forever()
     except KeyboardInterrupt:
         timer1.cancel()
