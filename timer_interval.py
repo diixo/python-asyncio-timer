@@ -1,5 +1,6 @@
 import asyncio
 
+# https://stackoverflow.com/questions/45419723/python-timer-with-asyncio-coroutine
 
 class Timer_Interval:
     def __init__(self, interval, first_immediately, timer_name, context, callback):
@@ -14,6 +15,7 @@ class Timer_Interval:
         print(timer_name + " init done")
 
     async def _job(self):
+        print('>>>job')
         try:
             while self._ok:
                 if not self._is_first_call or not self._first_immediately:
@@ -46,6 +48,7 @@ if __name__ == '__main__':
     timer2 = Timer_Interval(interval=3, first_immediately=False, timer_name="Timer_2", context={'count': 0}, callback=some_callback_2)
 
     try:
+        print('>>>')
         loop = asyncio.get_event_loop()
         loop.run_forever()
     except KeyboardInterrupt:
