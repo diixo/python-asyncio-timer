@@ -10,7 +10,7 @@ class Timer:
         self._task = None
 
     def create_job(self):
-        self._task = asyncio.ensure_future(self._job())
+        self._task = asyncio.create_task(self._job())
         print('Timer::create_job')
 
     async def _job(self):
