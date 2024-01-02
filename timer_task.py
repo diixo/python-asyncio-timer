@@ -17,12 +17,6 @@ class Timer_Interval:
             await asyncio.sleep(self._interval)
             await self._callback(self._name, self._context, self)
 
-    async def _job(self):
-        print(">>job")
-        while self._ok:
-            await asyncio.sleep(self._interval)
-            await self._callback(self._name, self._context, self)
-
     def cancel(self):
         self._ok = False
         self._task.cancel()
