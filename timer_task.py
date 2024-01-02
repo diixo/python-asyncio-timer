@@ -15,16 +15,16 @@ class Timer_Task:
     async def start(self):
         while self._ok:
             await asyncio.sleep(self._interval)
-            self._callback(self._name, self._context, self)
+            self._callback(self._context, self)
 
     def cancel(self):
         self._ok = False
         self._task.cancel()
 
 
-def some_callback_1(timer_name, context, timer):
+def some_callback_1(context, timer):
     context['count'] += 1
-    print('callback: ' + timer_name + ", count: " + str(context['count']))
+    print('callback: ' + timer._name + ", count: " + str(context['count']))
 
 
 timer1 = Timer_Task(interval=1, timer_name="Timer_1", context={'count': 0}, callback=some_callback_1)
