@@ -3,6 +3,7 @@ import asyncio
 # https://stackoverflow.com/questions/45419723/python-timer-with-asyncio-coroutine
 
 class Timer_Task:
+
     def __init__(self, interval, timer_name, context, callback):
         self._interval = interval
         self._name = timer_name
@@ -19,7 +20,9 @@ class Timer_Task:
 
     def cancel(self):
         self._ok = False
-        self._task.cancel()
+        if self._task:
+            self._task.cancel()
+        print(self._name + "::cancel")
 
 
 def some_callback_1(context, timer):
@@ -38,6 +41,7 @@ if __name__ == '__main__':
     try:
         print('>>>')
         loop.run_forever()
+        print('<<<')
     except KeyboardInterrupt:
         timer1.cancel()
         print("clean up done")
