@@ -31,7 +31,7 @@ def some_callback_1(context, timer):
 
 ###########################################################################
 
-timer1 = Timer_Task(interval=1, timer_name="Timer_1", context={'count': 0}, callback=some_callback_1)
+timer1 = Timer_Task(interval=3, timer_name="Timer_1", context={'count': 0}, callback=some_callback_1)
 
 if __name__ == '__main__':
     
